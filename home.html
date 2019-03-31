@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>WeatherInfo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" media="screen" href="main.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<!-- <script src="main.js"></script> -->
+</head>
+
+<body>
+	<header>
+		<div id="header"></div>
+	</header>
+
+	<div class="search-container">
+		<div>
+			<div class="ui center aligned basic segment">
+				<div class="ui large left icon action input">
+					<i class="search icon"></i>
+					<input type="text" placeholder="Search city...">
+					<div class="ui teal submit button">Search</div>
+				</div>
+				<div class="ui horizontal divider">
+					Or
+				</div>
+				<div class="ui teal labeled icon button" onclick="getLocation()">
+					Your location
+					<i class="map marker alternate icon"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="search-result-container">
+		<div id="result-item-1" class="row search-result-item">
+		</div>
+		<div id="result-item-2" class="row search-result-item">
+		</div>
+		<div id="result-item-3" class="row search-result-item">
+		</div>
+	</div>
+
+	<script>
+		$(function () {
+			$('#header').load('./templates/header.html');
+			$('#result-item-1').load('./templates/search-result-item.html');
+			$('#result-item-2').load('./templates/search-result-item.html');
+			$('#result-item-3').load('./templates/search-result-item.html');
+		})
+
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			} else {
+				x.innerHTML = "Geolocation is not supported by this browser.";
+			}
+		}
+
+		function showPosition(position) {
+			console.log(`lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`);
+		}
+	</script>
+</body>
+
+</html>
