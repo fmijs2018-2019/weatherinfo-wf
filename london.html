@@ -7,6 +7,7 @@
 	<title>WeatherInfo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" media="screen" href="main.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -19,7 +20,6 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 	<!-- <script src="main.js"></script> -->
 </head>
@@ -65,35 +65,83 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div id="swiper-item-1"></div>
+						</div>
+						<div class="swiper-slide">
+							<div id="swiper-item-2"></div>
+						</div>
+						<div class="swiper-slide">
+							<div id="swiper-item-3"></div>
+						</div>
+						<div class="swiper-slide">
+							<div id="swiper-item-4"></div>
+						</div>
+						<div class="swiper-slide">
+							<div id="swiper-item-5"></div>
+						</div>
+					</div>
+					<div class="swiper-pagination"></div>
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+	<script src="./templates//header.js"></script>
+	<script src="./templates/weather-summary-table.js"></script>
+	<script src="./templates/swiper-item.js"></script>
 	<script>
 		$(function () {
-			$('#header').load('templates/header.html');
-			$('#weather-summary-table').load('templates/weather-summary-table.html');
+			var headerHtml = getHeaderHtml();
+			$('#header').html(headerHtml);
+
+			var weatherSummaryTableHtml = getWeatherSummaryTableHtml();
+			$('#weather-summary-table').html(weatherSummaryTableHtml);
+
+			var swiperItemHtml = getSwiperItemHtml();
+			$('#swiper-item-1').html(swiperItemHtml);
+			$('#swiper-item-2').html(swiperItemHtml);
+			$('#swiper-item-3').html(swiperItemHtml);
+			$('#swiper-item-4').html(swiperItemHtml);
+			$('#swiper-item-5').html(swiperItemHtml);
+
 		})
 
 		var hours = ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'];
 
 		var ctx = document.getElementById('weather-chart').getContext('2d');
 		var chart = new Chart(ctx, {
-			// The type of chart we want to create
 			type: 'line',
-
-			// The data for our dataset
 			data: {
 				labels: hours,
 				datasets: [{
 					label: 'My First dataset',
 					backgroundColor: 'rgba(255, 99, 132, 0)',
 					borderColor: '#00b5ad',
-					data: [0, 10, 5, 2, 20, 30, -3, 10, 5, 2, 20, 30, 0, 10, 5, 2, 20, 30, 0, 10, 5, 2, 20, 30, 12]
+					data: [0, 6, 8, 12, 13, 16, 12, 14, 19, 22, 20, 16, 14, 16, 13, 10, 8, 7, 7, 9, 6, 5, 2, -2, -4]
 				}]
 			},
-
-			// Configuration options go here
 			options: {}
+		});
+
+		var swiper = new Swiper('.swiper-container', {
+			slidesPerView: 3,
+			spaceBetween: 30,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
 		});
 
 	</script>

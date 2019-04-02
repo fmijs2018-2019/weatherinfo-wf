@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
@@ -19,6 +20,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 	<!-- <script src="main.js"></script> -->
 </head>
 
@@ -55,12 +57,18 @@
 		</div>
 	</div>
 
+	<script src="./templates/header.js"></script>
+	<script src="./templates/search-result-item.js"></script>
+
 	<script>
 		$(function () {
-			$('#header').load('./templates/header.html');
-			$('#result-item-1').load('./templates/search-result-item.html');
-			$('#result-item-2').load('./templates/search-result-item.html');
-			$('#result-item-3').load('./templates/search-result-item.html');
+			var headerHtml = getHeaderHtml();
+			$('#header').html(headerHtml);
+
+			var searchResultItemHtml = getSearchResultItemHtml();
+			$('#result-item-1').html(searchResultItemHtml);
+			$('#result-item-2').html(searchResultItemHtml);
+			$('#result-item-3').html(searchResultItemHtml);
 		})
 
 		function getLocation() {
